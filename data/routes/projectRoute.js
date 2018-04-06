@@ -30,4 +30,18 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/add', (req, res) => {
+  // POST
+  const project = req.body;
+
+  db
+    .insert(project)
+    .then(response => {
+      res.status(201).json(project);
+    })
+    .catch(error => {
+      res.status(500).json({ error: 'Unable to create post!' });
+    });
+});
+
 module.exports = router;

@@ -30,7 +30,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/add', (req, res) => {
+router.post('/', (req, res) => {
+  // POST
   const action = req.body;
 
   db
@@ -41,6 +42,21 @@ router.post('/add', (req, res) => {
     .catch(error => {
       res.status(500).json({ error: 'Unable to create post!' });
     });
+});
+
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const update = req.body;
+
+  db.update(id, update).then(count => {
+    if (count > 0) {
+      db.findById(id).then(updatePost => {
+        res.status(200).json(updatedPost);
+      });
+    } else {
+      res.status(404).json({ message: 'Post does not exist' });
+    }
+  });
 });
 
 module.exports = router;
