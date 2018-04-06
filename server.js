@@ -15,8 +15,8 @@ const logger = (req, res, next) => {
 
 // Route Imports
 const actionRouter = require('./data/routes/actionRoute.js');
-const mapperRoute = require('./data/routes/mappersRoute.js');
-const projectRoute = require('./data/routes/projectRoute.js');
+const mapperRouter = require('./data/routes/mappersRoute.js');
+const projectRouter = require('./data/routes/projectRoute.js');
 
 // Middleware
 server.use(express.json());
@@ -31,9 +31,9 @@ server.get('/', (req, res) => {
 });
 
 // Routes
-server.use('/api/action');
-server.use('/api/posts');
-server.use('/api/tags');
+server.use('/api/action', actionRouter);
+server.use('/api/mapper', mapperRouter);
+server.use('/api/project', projectRouter);
 
 // Port
 const port = 5000;
