@@ -24,16 +24,16 @@ server.use(logger);
 server.use(helmet());
 server.use(cors());
 
+// Routes
+server.use('/api/action', actionRouter);
+server.use('/api/mapper', mapperRouter);
+server.use('/api/project', projectRouter);
+
 // Server Code
 server.get('/', (req, res) => {
   // API Check
   res.json({ api: 'Running..' });
 });
-
-// Routes
-server.use('/api/action', actionRouter);
-server.use('/api/mapper', mapperRouter);
-server.use('/api/project', projectRouter);
 
 // Port
 const port = 5000;

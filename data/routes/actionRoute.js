@@ -30,13 +30,13 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/add', (req, res) => {
   const action = req.body;
 
   db
     .insert(action)
     .then(response => {
-      res.status(201).json(response);
+      res.status(201).json(action);
     })
     .catch(error => {
       res.status(500).json({ error: 'Unable to create post!' });
